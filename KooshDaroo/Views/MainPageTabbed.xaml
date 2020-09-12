@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+            xmlns:ms="clr-namespace:KooshDaroo.Controls"
+            mc:Ignorable="d"
+             x:Class="KooshDaroo.Customer.Views.MainPageTabbed">
+    <!--Pages can be added as references or inline-->
+    <ContentPage Title="ارسال نسخه">
+        <ContentPage.Content>
+            <StackLayout VerticalOptions="EndAndExpand">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <controls:CircleImage x:Name="Camera" Grid.Row="1" Grid.Column="0">
+                        <controls:CircleImage.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="Android, iOS">80</On>
+                                <On Platform="WinPhone">100</On>
+                            </OnPlatform>
+                        </controls:CircleImage.WidthRequest>
+                        <controls:CircleImage.HeightRequest>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="Android, iOS">80</On>
+                                <On Platform="WinPhone">100</On>
+                            </OnPlatform>
+                        </controls:CircleImage.HeightRequest>
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnCameraTapped" NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </controls:CircleImage>
+                    <controls:CircleImage x:Name="Gallery" Grid.Row="1" Grid.Column="1">
+                        <controls:CircleImage.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="Android, iOS">80</On>
+                                <On Platform="WinPhone">100</On>
+                            </OnPlatform>
+                        </controls:CircleImage.WidthRequest>
+                        <controls:CircleImage.HeightRequest>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="Android, iOS">80</On>
+                                <On Platform="WinPhone">100</On>
+                            </OnPlatform>
+                        </controls:CircleImage.HeightRequest>
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnGalleryTapped" NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </controls:CircleImage>
+                    <controls:CircleImage x:Name="Send" Grid.Row="1" Grid.Column="2">
+                        <controls:CircleImage.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="Android, iOS">80</On>
+                                <On Platform="WinPhone">100</On>
+                            </OnPlatform>
+                        </controls:CircleImage.WidthRequest>
+                        <controls:CircleImage.HeightRequest>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="Android, iOS">80</On>
+                                <On Platform="WinPhone">100</On>
+                            </OnPlatform>
+                        </controls:CircleImage.HeightRequest>
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnSendTapped" NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </controls:CircleImage>
+                    <Image x:Name="PrescribeImage" BackgroundColor="BlueViolet"  Grid.Row="0" Grid.ColumnSpan="3" Aspect="AspectFill" />
+                </Grid>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage Title="پاسخ داروخانه ها">
+        <Grid Padding="12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Button Text="ارسال پیام تأیید و مراجعه به داروخانه" x:Name="accept" Grid.Row="0" Grid.ColumnSpan="3" Command="{Binding AcceptCommand}" FontSize="Large" />
+            <Button Text="مسیریابی تا داروخانه انتخابی" x:Name="routeToPharmacy" Grid.Row="1" Grid.ColumnSpan="3" Command="{Binding RouteToPharmacyCommand}" FontSize="Large" />
+            <ListView ItemsSource="{Binding responseS}"
+                      ms:MultiSelectListView.IsMultiSelect="False"
+                      Grid.Row="2" Grid.ColumnSpan="3"
+                      ItemTapped="lvResponses_ItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ms:SelectableViewCell>
+                            <!-- set the selected indicator (optional) -->
+                            <ms:SelectableViewCell.CheckView>
+                                <BoxView Color="Red" WidthRequest="12" HeightRequest="12" />
+                            </ms:SelectableViewCell.CheckView>
+
+                            <!-- set the content (optional) -->
+                            <ms:SelectableViewCell.DataView>
+                                <Label Text="{Binding NDI}"  HorizontalOptions="FillAndExpand" FontSize="Medium" TextColor="Black"/>
+                            </ms:SelectableViewCell.DataView>
+                        </ms:SelectableViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentPage>
+</TabbedPage>

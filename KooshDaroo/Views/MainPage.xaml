@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             mc:Ignorable="d"
+             x:Class="KooshDaroo.Views.MainPage">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="EndAndExpand">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <controls:CircleImage x:Name="Camera" Grid.Row="1" Grid.Column="0">
+                    <controls:CircleImage.WidthRequest>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="Android, iOS">80</On>
+                            <On Platform="WinPhone">100</On>
+                        </OnPlatform>
+                    </controls:CircleImage.WidthRequest>
+                    <controls:CircleImage.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="Android, iOS">80</On>
+                            <On Platform="WinPhone">100</On>
+                        </OnPlatform>
+                    </controls:CircleImage.HeightRequest>
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCameraTapped" NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </controls:CircleImage>
+                <controls:CircleImage x:Name="Gallery" Grid.Row="1" Grid.Column="1">
+                    <controls:CircleImage.WidthRequest>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="Android, iOS">80</On>
+                            <On Platform="WinPhone">100</On>
+                        </OnPlatform>
+                    </controls:CircleImage.WidthRequest>
+                    <controls:CircleImage.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="Android, iOS">80</On>
+                            <On Platform="WinPhone">100</On>
+                        </OnPlatform>
+                    </controls:CircleImage.HeightRequest>
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnGalleryTapped" NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </controls:CircleImage>
+                <controls:CircleImage x:Name="Send" Grid.Row="1" Grid.Column="2">
+                    <controls:CircleImage.WidthRequest>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="Android, iOS">80</On>
+                            <On Platform="WinPhone">100</On>
+                        </OnPlatform>
+                    </controls:CircleImage.WidthRequest>
+                    <controls:CircleImage.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="Android, iOS">80</On>
+                            <On Platform="WinPhone">100</On>
+                        </OnPlatform>
+                    </controls:CircleImage.HeightRequest>
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnSendTapped" NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </controls:CircleImage>
+                <Image x:Name="PrescribeImage" BackgroundColor="BlueViolet"  Grid.Row="0" Grid.ColumnSpan="3" Aspect="AspectFill" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

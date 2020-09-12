@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ms="clr-namespace:MultiSelectDemo.Controls"
+             mc:Ignorable="d"
+             x:Class="KooshDaroo.Pharmacy.Views.MultiSelectPage">
+    <Grid Padding="12">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Button Text="Send" x:Name="send" Grid.Row="0" Grid.Column="0" Command="{Binding SendCommand}" />
+        <Button Text="Select All" x:Name="selectAll" Grid.Row="1" Grid.Column="0" Command="{Binding SelectAllCommand}" />
+        <Image x:Name="image" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3" />
+
+        <ListView ItemsSource="{Binding Items}"
+                  ms:MultiSelectListView.IsMultiSelect="{Binding EnableMultiSelect}"
+                  Grid.Row="2" Grid.ColumnSpan="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ms:SelectableViewCell>
+
+                        <!-- set the selected indicator (optional) -->
+                        <ms:SelectableViewCell.CheckView>
+                            <BoxView Color="Red" WidthRequest="12" HeightRequest="12" />
+                        </ms:SelectableViewCell.CheckView>
+
+                        <!-- set the content (optional) -->
+                        <ms:SelectableViewCell.DataView>
+                            <Label Text="{Binding}" />
+                        </ms:SelectableViewCell.DataView>
+
+                    </ms:SelectableViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </Grid>
+</ContentPage>
